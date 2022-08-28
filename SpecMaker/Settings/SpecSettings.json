@@ -1,0 +1,43 @@
+﻿{
+	"ExcelFilledFormSpecSheetName": "Спецификация",
+	"MandatoryOrderedColumnNames": {
+		"0": "Позиция", 
+		"1": "Наименование", 
+		"2": "Тип, марка, обозначение документа, опросного листа",
+		"3": "Код оборудования, изделия, материала",
+		"4": "Завод-изготовитель",
+		"5": "Единица измерения",
+		"6": "Количество",
+		"7": "Масса единицы",
+		"8": "Примечание"
+	},
+	"DelimeterFor2ndColumn": " - ",
+	"ExcludedColumnNames": ["Позиция"],
+	"NoDelimeterFormatColumnNames": ["DN"],
+	"ColumnLetterAddress": [
+		"G", "H", "I", "J", "N", "S", "U", "V", "X"
+	],
+	"FirstRowIndex": 6,
+	"RowStep": 2,
+	"MaxRowIndex": [40, 48],
+	"ExampleSheet2Name": "Лист2_образец",
+	"FirstPageStampMap": {
+		"Designer":			"L48",
+		"Checker":			"L49",
+		"TeamLead":			"L50",
+		"NormController":	"L52",
+		"Approver":			"L54",
+		"Customer":			"R45",
+		"Plant":			"R48",
+		"Stage":			"W49",
+		"ProjectCode":		"R43",
+		"Date":				"Q48"
+	},
+	"FirstPageSignMap": {
+		"Designer"		  : "O48",
+		"Checker"		  : "O49",
+		"TeamLead"		  : "O50",
+		"NormController"  : "O52",
+		"Approver"		  : "O54"
+	}
+}
