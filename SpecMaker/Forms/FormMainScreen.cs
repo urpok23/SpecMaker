@@ -21,7 +21,7 @@ namespace SpecMaker
             SpecSettings = Utilities.ReadConfig<SpecSettignsSchema>(SpecSettignsSchema.PathToSpecSettings);
             ProjectInfoScreen = new FormProjectInfoScreen(AppSettings);
 # if DEBUG
-            tbExcelFormFilePath.Text = @"C:\MyFolder\csharp\SpecMaker\SpecMaker\Resources\ExcelTemplates\0342-Спецификация арматуры+Антон.xlsx";
+            tbExcelFormFilePath.Text = @"C:\MyFolder\csharp\SpecMaker\SpecMaker\Resources\ExcelTemplates\0342-РЎРїРµС†РёС„РёРєР°С†РёСЏ Р°СЂРјР°С‚СѓСЂС‹+РђРЅС‚РѕРЅ.xlsx";
 #endif
         }
 
@@ -42,7 +42,7 @@ namespace SpecMaker
             if (openFileDialogSelectExcelForm.ShowDialog() == DialogResult.OK)
             {
                 tbExcelFormFilePath.Text = openFileDialogSelectExcelForm.FileName;
-                statusLabel.Text = "Проверьте данные о проекте и выгрузите спецификацию";
+                statusLabel.Text = "РџСЂРѕРІРµСЂСЊС‚Рµ РґР°РЅРЅС‹Рµ Рѕ РїСЂРѕРµРєС‚Рµ Рё РІС‹РіСЂСѓР·РёС‚Рµ СЃРїРµС†РёС„РёРєР°С†РёСЋ";
             }
         }
 
@@ -54,7 +54,7 @@ namespace SpecMaker
 
                 //validate screen state here...
                 if (string.IsNullOrEmpty(tbExcelFormFilePath.Text)) 
-                    throw new ArgumentException( $"Выберите путь к файлу Excel-формы." );
+                    throw new ArgumentException( $"Р’С‹Р±РµСЂРёС‚Рµ РїСѓС‚СЊ Рє С„Р°Р№Р»Сѓ Excel-С„РѕСЂРјС‹." );
 
                 var c = new SpecCreator
                 (
@@ -62,13 +62,13 @@ namespace SpecMaker
                     projInfo: ProjectInfoScreen.ProjectInfo,
                     appSettings: AppSettings,
                     specSettings: SpecSettings,
-                    ProgressReporter: loadingScreen.ProgressReporter
+                    progressReporter: loadingScreen.ProgressReporter
                 );
                 loadingScreen.Show();
                 this.Enabled = false;
 
                 await Task.Run( () => c.MakeSpecificationAsync() );
-                statusLabel.Text = "Готово";
+                statusLabel.Text = "Р“РѕС‚РѕРІРѕ";
             }
 
             catch (AggregateException ex)

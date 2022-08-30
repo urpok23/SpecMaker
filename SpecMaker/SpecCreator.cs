@@ -31,13 +31,13 @@ namespace SpecMaker
             ProjectInfoDataSchema projInfo, 
             AppSettingsSchema appSettings, 
             SpecSettignsSchema specSettings, 
-            IProgress<ProgressHelper> ProgressReporter)
+            IProgress<ProgressHelper> progressReporter)
         {
             ExcelFormFilePath = excelFormPath;
             ProjectInfo = projInfo;
             AppSettings = appSettings;
             SpecSettings = specSettings;
-            Progress = ProgressReporter;
+            Progress = progressReporter;
         }
         public async Task MakeSpecificationAsync()
         {
@@ -86,7 +86,7 @@ namespace SpecMaker
 
             FillStamp(ref ws);
 
-            int rowNumber = -1;
+            var rowNumber = -1;
             var total = (double) grdt.Count;
             var current = 0;
             foreach (var dt in grdt)
@@ -150,7 +150,7 @@ namespace SpecMaker
             var groupedData = MakeGroups(in dt);
             //groupedData.Sort((l,r) => Utilities.SortTablesByPositions(l,r, SpecSettings.MandatoryOrderedColumnNames[0]));
 
-            List<string[][]> separatedData = groupedData.Select(grdt => SeparateData(grdt)).ToList();
+            List<string[][]> separatedData = groupedData.Select(SeparateData).ToList();
             
             return separatedData;
 
@@ -176,7 +176,7 @@ namespace SpecMaker
         }
         private string[][] SeparateData(DataTable dt)
         {
-            // make 9 clmns: exctract from DataTable -> combine (i.e, for 1st and 2nd clmn)
+            // make 9 clmns: extract from DataTable -> combine (i.e, for 1st and 2nd clmn)
 
             HashSet<string> secondColumnProps = new(AllColumnNamesFromExcel);
             secondColumnProps.ExceptWith(SpecSettings.MandatoryOrderedColumnNames.Values);
@@ -322,7 +322,7 @@ namespace SpecMaker
 
             var groups = dtOriginal.AsEnumerable().GroupBy(
                 row => row.Field<string>(columnNameToGroup),
-                (key, rows) => rows
+                (_, rows) => rows
             ).ToArray();
 
             List<DataTable> dtList = new(groups.Length);
