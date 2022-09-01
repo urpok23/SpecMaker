@@ -143,7 +143,7 @@ namespace SpecMaker
 
         private void buttonCancelChanges_Click(object sender, EventArgs e)
         {
-            UpdateProjectInfoOnScreen(ProjectInfo);
+            //UpdateProjectInfoOnScreen(ProjectInfo);
             this.Close();
             //this.Dispose();
         }

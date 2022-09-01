@@ -8,20 +8,25 @@ namespace SpecMaker
 {
     public partial class FormMainScreen : Form
     {
-        private FormProjectInfoScreen ProjectInfoScreen { get; }
-        public AppSettingsSchema AppSettings { get; }
-        public SpecSettignsSchema SpecSettings { get; }
+        public AppSettingsSchema AppSettings 
+        { 
+            get => Utilities.ReadConfig<AppSettingsSchema>(AppSettingsSchema.PathToAppSettings);
+        }
+        public SpecSettignsSchema SpecSettings 
+        {
+            get => Utilities.ReadConfig<SpecSettignsSchema>(SpecSettignsSchema.PathToSpecSettings);
+        }        
+        public ProjectInfoDataSchema ProjectInfo
+        {
+            get => Utilities.ReadConfig<ProjectInfoDataSchema>(ProjectInfoDataSchema.ProjectInfoFilePath);
+        }
 
         public FormMainScreen()
         {
             InitializeComponent();
             InitializeFileDialog();
-
-            AppSettings = Utilities.ReadConfig<AppSettingsSchema>(AppSettingsSchema.PathToAppSettings);
-            SpecSettings = Utilities.ReadConfig<SpecSettignsSchema>(SpecSettignsSchema.PathToSpecSettings);
-            ProjectInfoScreen = new FormProjectInfoScreen(AppSettings);
 # if DEBUG
-            tbExcelFormFilePath.Text = @"C:\MyFolder\csharp\SpecMaker\SpecMaker\Resources\ExcelTemplates\0342-Спецификация арматуры+Антон.xlsx";
+            tbExcelFormFilePath.Text = @"C:\MyFolder\csharp\SpecMaker\SpecMaker\Resources\ExcelTemplates\Пример формы.xlsx";
 #endif
         }
 
@@ -50,16 +55,19 @@ namespace SpecMaker
         {
             try
             {
-                using FormLoadingScreen loadingScreen = new ();
-
                 //validate screen state here...
                 if (string.IsNullOrEmpty(tbExcelFormFilePath.Text)) 
                     throw new ArgumentException( $"Выберите путь к файлу Excel-формы." );
+                
+                if ( ! File.Exists(tbExcelFormFilePath.Text)) 
+                    throw new ArgumentException( $"Файл {tbExcelFormFilePath.Text} не существует." );
+
+                using FormLoadingScreen loadingScreen = new();
 
                 var c = new SpecCreator
                 (
                     excelFormPath: tbExcelFormFilePath.Text,
-                    projInfo: ProjectInfoScreen.ProjectInfo,
+                    projInfo: ProjectInfo,
                     appSettings: AppSettings,
                     specSettings: SpecSettings,
                     progressReporter: loadingScreen.ProgressReporter
@@ -75,9 +83,9 @@ namespace SpecMaker
             {
                 int i = 0;
                 var res = new StringBuilder();
-                foreach (var inner_ex in ex.InnerExceptions)
+                foreach (var innerEx in ex.InnerExceptions)
                 {
-                    res.Append($"{++i}) {inner_ex.Message}\n\n");
+                    res.Append($"{++i}) {innerEx.Message}\n\n");
                 }
                 MessageBox.Show(res.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -99,7 +107,8 @@ namespace SpecMaker
         }
 
         private void bChangeProjectInfo_Click(object sender, EventArgs e)
-        {   
+        {
+            using FormProjectInfoScreen ProjectInfoScreen = new(AppSettings);
             var res = ProjectInfoScreen.ShowDialog(owner: this);
             //if (res == DialogResult.Cancel)
             //MessageBox.Show($"{res}");

@@ -12,7 +12,7 @@
 		"8": "Примечание"
 	},
 	"DelimeterFor2ndColumn": " - ",
-	"ExcludedColumnNames": ["Позиция"],
+	"ExcludedColumnNames": ["Позиция", "Количество"],
 	"NoDelimeterFormatColumnNames": ["DN"],
 	"ColumnLetterAddress": [
 		"G", "H", "I", "J", "N", "S", "U", "V", "X"
