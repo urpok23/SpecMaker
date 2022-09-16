@@ -54,6 +54,13 @@ namespace SpecMaker
             Progress.Report(new ProgressHelper("Печать в PDF...", 100));
 
             PDFPrinters.PrintViaInterop(outputExcelPath);
+
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
         }
         private string PrepareOutputExcel()
         {
