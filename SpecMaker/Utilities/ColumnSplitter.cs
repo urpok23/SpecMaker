@@ -84,11 +84,11 @@ namespace SpecMaker
         }
         public static string[] MakeFourthColumn(in DataTable dt, string columnName)
         {
-            return DefaultSplit(dt, columnName);
+            return ExtractFirst(dt, columnName);
         }
         public static string[] MakeFifthColumn(in DataTable dt, string columnName)
         {
-            return DefaultSplit(dt, columnName);
+            return ExtractFirst(dt, columnName);
         }
         public static (string[], string[]) MakeSixthAndSeventhColumn(in DataTable dt, 
             string column6Name, 
