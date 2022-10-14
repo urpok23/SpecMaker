@@ -80,7 +80,7 @@ namespace SpecMaker
         }
         public static string[] MakeThirdColumn(in DataTable dt, string columnName)
         {
-            return DefaultSplit(dt, columnName);
+            return ExtractFirst(dt, columnName);
         }
         public static string[] MakeFourthColumn(in DataTable dt, string columnName)
         {
