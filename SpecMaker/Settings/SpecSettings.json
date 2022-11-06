@@ -31,7 +31,8 @@
 		"Plant":			"R48",
 		"Stage":			"W49",
 		"ProjectCode":		"R43",
-		"Date":				"Q48"
+		"Date":				"Q48",
+		"Purpose":			"R51"
 	},
 	"FirstPageSignMap": {
 		"Designer"		  : "O48",

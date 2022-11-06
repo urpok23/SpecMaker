@@ -39,6 +39,7 @@ namespace SpecMaker
             this.comboBoxApprover = new System.Windows.Forms.ComboBox();
             this.textBoxProjectCode = new System.Windows.Forms.TextBox();
             this.toolTipProjectCode = new System.Windows.Forms.ToolTip(this.components);
+            this.textBoxPurpose = new System.Windows.Forms.TextBox();
             this.textBoxCustomer = new System.Windows.Forms.TextBox();
             this.toolTipCustomer = new System.Windows.Forms.ToolTip(this.components);
             this.textBoxPlant = new System.Windows.Forms.TextBox();
@@ -138,6 +139,17 @@ namespace SpecMaker
             this.toolTipProjectCode.UseAnimation = false;
             this.toolTipProjectCode.UseFading = false;
             // 
+            // textBoxPurpose
+            // 
+            this.textBoxPurpose.Font = new System.Drawing.Font("Consolas", 13.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
+            this.textBoxPurpose.Location = new System.Drawing.Point(453, 277);
+            this.textBoxPurpose.Name = "textBoxPurpose";
+            this.textBoxPurpose.Size = new System.Drawing.Size(445, 34);
+            this.textBoxPurpose.TabIndex = 12;
+            this.textBoxPurpose.Text = "Спецификация ручной арматуры";
+            this.textBoxPurpose.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.toolTipProjectCode.SetToolTip(this.textBoxPurpose, "Шифр проекта, например 0228-ТХ.ОЛ");
+            // 
             // textBoxCustomer
             // 
             this.textBoxCustomer.Font = new System.Drawing.Font("Consolas", 13.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
@@ -236,6 +248,7 @@ namespace SpecMaker
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(1231, 393);
+            this.Controls.Add(this.textBoxPurpose);
             this.Controls.Add(this.textBoxDate);
             this.Controls.Add(this.buttonApplyCHanges);
             this.Controls.Add(this.buttonExportProjectInfo);
@@ -284,5 +297,6 @@ namespace SpecMaker
         private System.Windows.Forms.OpenFileDialog openFileDialogImportProjectInfo;
         private System.Windows.Forms.SaveFileDialog saveFileDialogExportProjectInfo;
         private System.Windows.Forms.TextBox textBoxDate;
+        private System.Windows.Forms.TextBox textBoxPurpose;
     }
 }

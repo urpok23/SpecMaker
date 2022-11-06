@@ -15,6 +15,7 @@ namespace SpecMaker
         public string Stage { get; set; }
         public string ProjectCode { get; set; }
         public string Date { get; set; }
+        public string Purpose { get; set; }
 
         [JsonIgnore]
         public static readonly string ProjectInfoFilePath = Path.Join("Settings", "ProjectInfoData.json");

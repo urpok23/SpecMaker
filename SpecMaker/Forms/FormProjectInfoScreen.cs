@@ -71,6 +71,7 @@ namespace SpecMaker
             ProjectInfo.Plant           = textBoxPlant.Text;
             ProjectInfo.Customer        = textBoxCustomer.Text;
             ProjectInfo.Date            = textBoxDate.Text;
+            ProjectInfo.Purpose         = textBoxPurpose.Text;
         }
         private void UpdateProjectInfoOnScreen(ProjectInfoDataSchema pi)
         {
@@ -84,6 +85,7 @@ namespace SpecMaker
             textBoxPlant.Text               = pi.Plant;
             textBoxCustomer.Text            = pi.Customer;
             textBoxDate.Text                = pi.Date;
+            textBoxPurpose.Text             = pi.Purpose;
         }
         private ProjectInfoDataSchema GetProjectInfoFromScreen()
         {
@@ -99,6 +101,7 @@ namespace SpecMaker
                 Plant = textBoxPlant.Text,
                 Customer = textBoxCustomer.Text,
                 Date = textBoxDate.Text,
+                Purpose = textBoxPurpose.Text,
             };
     }
         private async Task WriteProjectInfoToDisk1()
@@ -153,6 +156,5 @@ namespace SpecMaker
             //await WriteProjectInfoToDisk1();
             await WriteProjectInfoToDisk2(ProjectInfoConfigPath, ProjectInfo);
         }
-
     }
 }
