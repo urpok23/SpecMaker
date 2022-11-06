@@ -113,7 +113,7 @@ namespace SpecMaker
             foreach (var (prop, xlRange) in SpecSettings.FirstPageStampMap)
             {
                 string propValue = prjInfoType.GetProperty(prop)?.GetValue(ProjectInfo)?.ToString();
-                ws.Cells[xlRange].Value = propValue;
+                if ( ! string.IsNullOrEmpty(propValue)) ws.Cells[xlRange].Value = propValue;
             }
         }
 
